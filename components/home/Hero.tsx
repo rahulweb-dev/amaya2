@@ -89,8 +89,7 @@ export default function Hero() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              Where life <br />
-              finds its
+              Where life finds its
               <br />
               <em className='text-limestone/70 not-italic'>perfect rhythm.</em>
             </motion.h1>
