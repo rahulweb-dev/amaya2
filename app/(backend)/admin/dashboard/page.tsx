@@ -5,7 +5,6 @@ import { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import * as XLSX from 'xlsx';
 
-import { saveAs } from 'file-saver';
 import {
   Calendar,
   Clock3,
@@ -533,11 +532,7 @@ export default function AdminDashboard() {
       type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8',
     });
 
-    saveAs(
-      blob,
-
-      `amaya-leads-${Date.now()}.xlsx`,
-    );
+ 
   }
 
   return (
