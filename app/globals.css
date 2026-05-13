@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-jost: 'Jost', system-ui, sans-serif;
+
+  --navy: #23384A;
+  --navy-deep: #1D2F3F;
+  --limestone: #E7D8C6;
+  --stone: #D8CEC3;
+  --mist: #ECE8E1;
+  --sage: #7C8B78;
+  --brass: #A9825A;
+  --charcoal: #2F2925;
+  --surface: #F4F0EB;
+  --surface-alt: #EDE8E0;
+  --text-mid: #6B5F57;
+  --text-muted: #9E948D;
+  --divider: #D2C9BF;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 300;
+  background: var(--surface);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  line-height: 1.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.section-pad {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.brass-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--brass);
+  display: block;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0.4;
+  cursor: pointer;
+  filter: invert(0.5);
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-jost), system-ui, sans-serif;
+}
+
+select option {
+  background: white;
+  color: var(--charcoal);
+}
