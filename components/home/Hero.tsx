@@ -68,7 +68,7 @@ export default function Hero() {
         className='relative h-full flex flex-col justify-end pb-0'
       >
         <div className='max-w-[1200px] mx-auto px-6 lg:px-16 w-full pb-0'>
-          <div className='max-w-xl pb-16 lg:pb-24'>
+          <div className='max-w-2xl pb-16 lg:pb-24'>
             {/* <motion.span
               className="block font-sans text-[14px] font-semibold tracking-[0.4em] uppercase text-brass/80 mb-7"
               initial={{ opacity: 0, y: 16 }}
@@ -89,7 +89,7 @@ export default function Hero() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              Where life finds its
+              Where life <br/>finds its
               <br />
               <em className='text-limestone/70 not-italic'>perfect rhythm.</em>
             </motion.h1>
