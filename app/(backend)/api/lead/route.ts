@@ -46,33 +46,88 @@ export async function POST(req: NextRequest) {
 
 
 export async function GET(req: NextRequest) {
-  // Auth check
-  const token = req.cookies.get('admin_token')?.value
-  if (token !== process.env.ADMIN_SECRET) {
-    return NextResponse.json({ ok: false, message: 'Unauthorized.' }, { status: 401 })
+  try {
+    // AUTH
+    const token =
+      req.cookies.get('admin_token')
+        ?.value
+
+    if (
+      token !==
+      process.env.ADMIN_SECRET
+    ) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: 'Unauthorized.',
+        },
+        { status: 401 },
+      )
+    }
+
+    // DB
+    await connectDB()
+
+    // QUERY
+    const { searchParams } =
+      req.nextUrl
+
+    const leadType =
+      searchParams.get('leadType')
+
+    const page = Math.max(
+      1,
+      Number(
+        searchParams.get('page') ||
+        '1',
+      ),
+    )
+
+    const limit = 20
+
+    const filter = leadType
+      ? { leadType }
+      : {}
+
+    const [leads, total] =
+      await Promise.all([
+        Lead.find(filter)
+          .sort({
+            createdAt: -1,
+          })
+          .skip((page - 1) * limit)
+          .limit(limit)
+          .lean(),
+
+        Lead.countDocuments(filter),
+      ])
+
+    return NextResponse.json({
+      ok: true,
+      leads,
+      pagination: {
+        page,
+        limit,
+        total,
+        pages: Math.ceil(
+          total / limit,
+        ),
+      },
+    })
+  } catch (error: any) {
+    console.error(
+      '[GET /api/lead]',
+      error,
+    )
+
+    return NextResponse.json(
+      {
+        ok: false,
+        message:
+          error.message ||
+          'Server Error',
+      },
+      { status: 500 },
+    )
   }
-
-  await connectDB()
-
-  const { searchParams } = req.nextUrl
-  const leadType = searchParams.get('leadType')
-  const page = Math.max(1, Number(searchParams.get('page') || '1'))
-  const limit = 20
-
-  const filter = leadType ? { leadType } : {}
-
-  const [leads, total] = await Promise.all([
-    Lead.find(filter)
-      .sort({ createdAt: -1 })
-      .skip((page - 1) * limit)
-      .limit(limit)
-      .lean(),
-    Lead.countDocuments(filter),
-  ])
-
-  return NextResponse.json({
-    ok: true,
-    leads,
-    pagination: { page, limit, total, pages: Math.ceil(total / limit) },
-  })
 }
