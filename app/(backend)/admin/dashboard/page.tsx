@@ -356,13 +356,13 @@ export default function AdminDashboard() {
 
       flex: 1,
 
-      renderCell: (params) => (
-        <div className='flex items-center gap-3 h-full'>
-          <Avatar name={params.row.name} />
+      // renderCell: (params) => (
+      //   <div className='flex items-center gap-3 h-full'>
+      //     <Avatar name={params.row.name} />
 
-          <span className='font-medium'>{params.row.name}</span>
-        </div>
-      ),
+      //     <span className='font-medium'>{params.row.name}</span>
+      //   </div>
+      // ),
     },
 
     {
@@ -388,11 +388,7 @@ export default function AdminDashboard() {
 
       flex: 1,
 
-      renderCell: (params) => (
-        <div className='flex items-center h-full'>
-          <Badge type={params.row.leadType} />
-        </div>
-      ),
+     
     },
 
     {
