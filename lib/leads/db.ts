@@ -17,24 +17,3 @@ export async function connectDB() {
   cached.conn = await cached.promise
   return cached.conn
 }
-
-// Schema
-const LeadSchema = new mongoose.Schema(
-  {
-    leadType:      { type: String, required: true },
-    sourcePage:    { type: String },
-    name:          { type: String, required: true },
-    phone:         { type: String, required: true },
-    email:         { type: String },
-    preferredDate: { type: String },
-    preferredTime: { type: String },
-    message:       { type: String },
-    context:       { type: String },
-    consent:       { type: Boolean, required: true },
-    consentAt:     { type: Date, default: Date.now },  // DPDP compliance
-  },
-  { timestamps: true }  // adds createdAt + updatedAt automatically
-)
-
-export const Lead =
-  mongoose.models.Lead ?? mongoose.model('Lead', LeadSchema)

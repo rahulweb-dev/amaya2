@@ -36,10 +36,8 @@ export interface LeadPayload {
   preferredDate?: string
   preferredTime?: string
   message?: string
-  /** e.g. specific residence type or floor plan code */
   context?: string
   consent: boolean
-  createdAt: string
 }
 
 export interface LeadDraft {
@@ -98,7 +96,6 @@ export function buildLeadPayload(draft: LeadDraft, sourcePage: string): LeadPayl
     message: draft.message?.trim() || undefined,
     context: draft.context || undefined,
     consent: draft.consent ?? true,
-    createdAt: new Date().toISOString(),
   }
 }
 

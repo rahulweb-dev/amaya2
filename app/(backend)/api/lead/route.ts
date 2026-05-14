@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { serverValidate } from '@/lib/leads/validate'
-import { connectDB, Lead } from '@/lib/leads/db'
+import { connectDB,  } from '@/lib/leads/db'
+import Lead from '@/model/Lead'
 import { sendEmail } from '@/lib/leads/email'
 import { sendWhatsApp } from '@/lib/leads/whatsapp'
 import type { LeadPayload } from '@/lib/leadPayload'
